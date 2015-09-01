@@ -1,0 +1,33 @@
+liquibase:
+   changeLog: classpath:db/changelog/db.changelog-master.xml
+spring:
+   jpa.hibernate.ddl-auto: create-drop
+   jpa.database-platform: org.hibernate.dialect.PostgreSQLDialect
+   profiles.active: development
+
+---
+
+spring:
+   profiles: development
+   datasource:
+       url: jdbc:postgresql://localhost:5432/homeautomationactivityloger
+       username: postgres
+       password: postgres
+
+   jpa:
+      show-sql: true
+
+---
+
+spring:
+   profiles: test
+
+   datasource:
+     driverClassName: org.hsqldb.jdbc.JDBCDriver
+     url: jdbc:hsqldb:mem:blog
+     username: sa
+     password:
+
+   jpa:
+     open-in-view: true
+     show-sql: true
